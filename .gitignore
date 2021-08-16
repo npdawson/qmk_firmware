@@ -12,6 +12,7 @@
 # Build artifacts
 .clang_complete
 .build/
+.ccls-cache/
 *.elf
 *.log
 *.lss
@@ -28,7 +29,9 @@
 
 # QMK-specific
 api_data/v1
+doxygen/
 quantum/version.h
+!quantum/tools/eeprom_reset.hex
 *.bin
 *.eep
 *.hex
