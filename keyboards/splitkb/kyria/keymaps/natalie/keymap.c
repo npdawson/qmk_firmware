@@ -30,7 +30,7 @@ enum layers {
 #define ALT_O       LALT_T(KC_O)
 #define GUI_A       LGUI_T(KC_A)
 
-#define SHFT_H      LSFT_T(KC_H)
+#define SHFT_H      RSFT_T(KC_H)
 #define CTRL_T      LCTL_T(KC_T)
 #define ALT_N       LALT_T(KC_N)
 #define GUI_S       LGUI_T(KC_S)
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         KC_BSPC, KC_ENT,  KC_DEL,  XXXXXXX, XXXXXXX,
+         KC_BSPC, KC_ENT,  KC_DEL,  XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_NUM] = LAYOUT_stack(
@@ -146,16 +146,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, KC_NLCK, XXXXXXX, KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, KC_PENT,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         KC_PENT, KC_KP_0, KC_PDOT, XXXXXXX, XXXXXXX,
+         KC_PENT, KC_KP_0, KC_PDOT, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_FUN] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
-   XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_PSCR
+   XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_PSCR,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
-   XXXXXXX, KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_SCRL
+   XXXXXXX, KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_SCRL,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   XXXXXXX, KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PAUS, XXXXXXX, XXXXXXX
+   XXXXXXX, KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PAUS, XXXXXXX, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
                          XXXXXXX, XXXXXXX, KC_APP,  _______, KC_TAB,
 //                      └────────┴────────┴────────┴────────┴────────┘
@@ -166,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         _______, _______, XXXXXXX, XXXXXXX, XXXXXXX,
+         _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_SYM] = LAYOUT_stack(
@@ -175,7 +175,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤
    XXXXXXX, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   XXXXXXX, KC_CIRC, KC_AMPR, KC_ASTR, KC_PIPE, KC_TILD, XXXXXXX, XXXXXXX
+   XXXXXXX, KC_CIRC, KC_AMPR, KC_ASTR, KC_PIPE, KC_TILD, XXXXXXX, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
                          XXXXXXX, XXXXXXX, KC_TILD, _______, XXXXXXX,
 //                      └────────┴────────┴────────┴────────┴────────┘
@@ -186,9 +186,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         XXXXXXX, _______, _______, XXXXXXX, XXXXXXX,
+         XXXXXXX, _______, _______, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
-                      ),
+                      )
 };
 
 #ifdef OLED_ENABLE
