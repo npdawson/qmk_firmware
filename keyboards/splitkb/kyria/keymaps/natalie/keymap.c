@@ -24,22 +24,12 @@ enum layers {
     _L3
 };
 
-#define SFT_U    LSFT_T(KC_U)
-#define CTL_E    LCTL_T(KC_E)
-#define ALT_O    LALT_T(KC_O)
-#define GUI_A    LGUI_T(KC_A)
-
-#define SFT_H    LSFT_T(KC_H)
-#define CTL_T    LCTL_T(KC_T)
-#define ALT_N    LALT_T(KC_N)
-#define GUI_S    LGUI_T(KC_S)
-
 #define KC_STAB  S(KC_TAB)
 
 #define DVORAK   DF(_DVORAK)
-#define COLEMAK  DF(_COLEMAK)
+#define COLEMAK  TG(_COLEMAK)
 
-#define OSL1     OSL(_ONESHOT)
+#define OSL1     OSL(_L1)
 #define OS_LSFT  OSM(MOD_LSFT)
 #define OS_LCTL  OSM(MOD_LCTL)
 #define OS_LALT  OSM(MOD_LALT)
@@ -65,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐ ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
    XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘ └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-                       TG(_GAME), XXXXXXX, OS_LCTL, KC_SPC,  OS_LGUI,            OS_LALT, OS_LSFT, OSL1,    KC_DEL,  DVORAK
+                       TG(_GAME), XXXXXXX, OS_LCTL, KC_SPC,  OS_LGUI,            OS_LALT, OS_LSFT, OSL1,    KC_DEL,  COLEMAK
                       //└────────┴────────┴────────┴────────┴────────┘          └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_GAME] = LAYOUT(
@@ -85,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                                     ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                       KC_LCBR, KC_LPRN, KC_COLN, KC_RPRN, KC_RCBR, KC_ENT, 
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐ ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, KC_BSLS, KC_TILD, KC_PIPE, KC_AMPR, KC_SCLN, _______, _______,   _______, _______, KC_SLSH, KC_AST,  KC_MINS, KC_PLUS, TO(_L3), _______, 
+   _______, KC_BSLS, KC_TILD, KC_PIPE, KC_AMPR, KC_SCLN, _______, _______,   _______, _______, KC_SLSH, KC_ASTR,  KC_MINS, KC_PLUS, TO(_L3), _______, 
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘ └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
                          _______, _______, TO(0),   KC_ENT,  _______,            _______, _______, TO(_L2), _______, _______
                       //└────────┴────────┴────────┴────────┴────────┘          └────────┴────────┴────────┴────────┴────────┘
@@ -114,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       ),
 };
 
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 	return OLED_ROTATION_180;
 }
@@ -179,12 +169,13 @@ static void render_status(void) {
     oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRLCK ") : PSTR("       "), false);
 }
 
-void oled_task_user(void) {
+bool oled_task_user(void) {
     if (is_keyboard_master()) {
         render_status(); // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
         render_kyria_logo();
     }
+    return false;
 }
 #endif
 
