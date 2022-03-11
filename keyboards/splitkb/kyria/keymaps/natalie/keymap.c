@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DVORAK] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
    XXXXXXX, KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,
-//├────────┼────────┼────────┼────────┼────────┼────────┤                   
+//├────────┼────────┼────────┼────────┼────────┼────────┤
    XXXXXXX, GUI_A,   ALT_O,   CTRL_E,  SHFT_U,  KC_I,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
    XXXXXXX, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    XXXXXXX, XXXXXXX,
@@ -112,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                    ┌────────┬────────┬────────┬────────┬────────┬────────┐
                        _______, _______, _______, _______, _______, _______,
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
-                       _______, _______, _______, _______, _______, _______,
+                       _______, KC_H,    KC_T,    KC_N,    KC_S,    _______,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______, _______, _______,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
@@ -121,11 +121,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     ),
     [_NAV] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
-   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
    XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
                          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
                       //└────────┴────────┴────────┴────────┴────────┘
@@ -134,14 +134,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
                        KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
          KC_ENT,  _______, XXXXXXX, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_NUM] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
-   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
    XXXXXXX, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
@@ -150,13 +150,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                          XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX,
 //                      └────────┴────────┴────────┴────────┴────────┘
 //                    ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                       KC_PSLS, KC_KP_7, KC_KP_8, KC_KP_9, KC_PMNS, XXXXXXX, 
+                       KC_PSLS, KC_KP_7, KC_KP_8, KC_KP_9, KC_PMNS, XXXXXXX,
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
-                       KC_PAST, KC_KP_4, KC_KP_5, KC_KP_6, KC_PPLS, XXXXXXX, 
+                       KC_PAST, KC_KP_4, KC_KP_5, KC_KP_6, KC_PPLS, XXXXXXX,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX, XXXXXXX, KC_NLCK, KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, XXXXXXX, 
+     XXXXXXX, XXXXXXX, KC_NLCK, KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         KC_PENT, KC_KP_0, KC_PDOT, XXXXXXX, XXXXXXX 
+         KC_PENT, KC_KP_0, KC_PDOT, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_FUN] = LAYOUT_stack(
@@ -167,16 +167,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
    XXXXXXX, KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PAUS, XXXXXXX, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
-                         XXXXXXX, XXXXXXX, KC_APP,  KC_SPC,  KC_TAB,  
+                         XXXXXXX, XXXXXXX, KC_APP,  KC_SPC,  KC_TAB,
 //                      └────────┴────────┴────────┴────────┴────────┘
 //                    ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
-                       XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX, 
+                       XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX 
+         XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_SYM] = LAYOUT_stack(
@@ -194,9 +194,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
                        KC_LBRC, KC_LPRN, KC_LCBR, KC_UNDS, KC_MINS, XXXXXXX,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX, XXXXXXX, KC_RBRC, KC_RPRN, KC_RCBR, KC_TILD, KC_QUES, XXXXXXX, 
+     XXXXXXX, XXXXXXX, KC_RBRC, KC_RPRN, KC_RCBR, KC_TILD, KC_QUES, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX 
+         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       )
 };
