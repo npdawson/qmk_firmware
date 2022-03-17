@@ -81,20 +81,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       ),
     [_COLEMAK] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
-   XXXXXXX, KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,
+   XXXXXXX, KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
-   XXXXXXX, GUI_A,   ALT_R,   CTRL_S,  SHFT_T,    KC_G,
+   XXXXXXX, GUI_A,   ALT_R,   CTRL_S,  SHFT_T,  KC_D,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    XXXXXXX, XXXXXXX,
+   XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
                          XXXXXXX, XXXXXXX, KC_ESC,  SPC_NAV, TAB_NUM,
                       //└────────┴────────┴────────┴────────┴────────┘
 //                  ┌────────┬────────┬────────┬────────┬────────┬────────┐
                      KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT, XXXXXXX,
 //                  ├────────┼────────┼────────┼────────┼────────┼────────┤
-                     KC_M,    SHFT_N,  CTRL_E,  ALT_I,   GUI_O,    XXXXXXX,
+                     KC_H,    SHFT_N,  CTRL_E,  ALT_I,   GUI_O,    XXXXXXX,
 //┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   XXXXXXX, XXXXXXX, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
+   XXXXXXX, XXXXXXX, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
 //└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
        ENT_SYM, BSP_FUN, KC_DEL,  XXXXXXX, DVORAK
 //    └────────┴────────┴────────┴────────┴────────┘
