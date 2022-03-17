@@ -176,27 +176,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX
+         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_SYM] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
-   XXXXXXX, KC_TILD, KC_PLUS, KC_BSLS, KC_PIPE, KC_COLN,
+   XXXXXXX, KC_TILD, KC_BSLS, KC_PIPE, KC_SLSH, KC_COLN,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
    XXXXXXX, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
    XXXXXXX, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, XXXXXXX, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
-                         XXXXXXX, XXXXXXX, KC_GRV,  KC_SPC,  KC_SLSH,
+                         XXXXXXX, XXXXXXX, KC_GRV,  KC_SPC,  KC_TILD,
 //                      └────────┴────────┴────────┴────────┴────────┘
 //                    ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                       KC_SCLN, KC_LABK, KC_EQL,  KC_RABK, XXXXXXX, XXXXXXX,
+                       KC_SCLN, KC_LABK, KC_EQL,  KC_RABK, KC_MINS, XXXXXXX,
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
-                       KC_LBRC, KC_LPRN, KC_LCBR, KC_UNDS, KC_MINS, XXXXXXX,
+                       KC_LBRC, KC_LPRN, KC_LCBR, KC_UNDS, KC_PLUS, XXXXXXX,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, XXXXXXX, KC_RBRC, KC_RPRN, KC_RCBR, KC_TILD, KC_QUES, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       )
 };
