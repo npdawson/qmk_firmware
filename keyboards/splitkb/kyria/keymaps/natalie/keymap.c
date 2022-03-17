@@ -55,8 +55,8 @@ enum layers {
 #define SPC_NAV     LT(_NAV, KC_SPC)
 #define TAB_NUM     LT(_NUM, KC_TAB)
 
-#define ENT_SYM     LT(_SYM, KC_ENT)
-#define BSP_FUN     LT(_FUN, KC_BSPC)
+#define ENT_FUN     LT(_FUN, KC_ENT)
+#define BSP_SYM     LT(_SYM, KC_BSPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DVORAK] = LAYOUT_stack(
@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
    XXXXXXX, XXXXXXX, KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    XXXXXXX,
 //└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-       ENT_SYM, BSP_FUN, KC_DEL,  XXXXXXX, COLEMAK
+       ENT_FUN, BSP_SYM, KC_DEL,  XXXXXXX, COLEMAK
 //    └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_COLEMAK] = LAYOUT_stack(
@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
    XXXXXXX, XXXXXXX, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
 //└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-       ENT_SYM, BSP_FUN, KC_DEL,  XXXXXXX, DVORAK
+       ENT_FUN, BSP_SYM, KC_DEL,  XXXXXXX, DVORAK
 //    └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_GAME] = LAYOUT_stack(
