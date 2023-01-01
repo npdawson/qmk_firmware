@@ -18,6 +18,7 @@
 enum layers {
     _DVORAK = 0,
     _COLEMAK,
+    _QWERTY,
     _GAME,
     _NAV,
     _NUM,
@@ -45,10 +46,21 @@ enum layers {
 #define ALT_I       LALT_T(KC_I)
 #define GUI_O       LGUI_T(KC_O)
 
+#define SHFT_F      LSFT_T(KC_F)
+#define CTRL_D      LCTL_T(KC_D)
+#define ALT_S       LALT_T(KC_S)
+//#define GUI_A       LGUI_T(KC_A)
+
+#define SHFT_J      RSFT_T(KC_J)
+#define CTRL_K      LCTL_T(KC_K)
+#define ALT_L       LALT_T(KC_L)
+#define GUI_SC      LGUI_T(KC_SCLN)
+
 #define KC_STAB     S(KC_TAB)
 
 #define DVORAK      DF(_DVORAK)
 #define COLEMAK     DF(_COLEMAK)
+#define QWERTY      DF(_QWERTY)
 
 #define TGLGAME     TG(_GAME)
 
@@ -95,6 +107,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                      KC_H,    SHFT_N,  CTRL_E,  ALT_I,   GUI_O,    XXXXXXX,
 //┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
    XXXXXXX, XXXXXXX, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
+//└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
+       ENT_FUN, BSP_SYM, KC_DEL,  XXXXXXX, QWERTY
+//    └────────┴────────┴────────┴────────┴────────┘
+                  ),
+    [_QWERTY] = LAYOUT_stack(
+//┌────────┬────────┬────────┬────────┬────────┬────────┐
+   XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,
+//├────────┼────────┼────────┼────────┼────────┼────────┤
+   XXXXXXX, GUI_A,   ALT_S,   CTRL_D,  SHFT_F,  KC_G,
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
+   XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX,
+//└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
+                         XXXXXXX, XXXXXXX, KC_ESC,  SPC_NAV, TAB_NUM,
+                      //└────────┴────────┴────────┴────────┴────────┘
+//                  ┌────────┬────────┬────────┬────────┬────────┬────────┐
+                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
+//                  ├────────┼────────┼────────┼────────┼────────┼────────┤
+                     KC_H,    SHFT_J,  CTRL_K,  ALT_L,   GUI_SC,  KC_QUOT,
+//┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+   XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
 //└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
        ENT_FUN, BSP_SYM, KC_DEL,  XXXXXXX, DVORAK
 //    └────────┴────────┴────────┴────────┴────────┘
@@ -242,6 +274,9 @@ static void render_status(void) {
             break;
         case _COLEMAK:
             oled_write_P(PSTR("Colemak\n"), false);
+            break;
+        case _QWERTY:
+            oled_write_P(PSTR("QWERTY\n"), false);
             break;
         case _GAME:
             oled_write_P(PSTR("Game Mode\n"), false);
