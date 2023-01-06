@@ -13,6 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include "keycodes.h"
 #include QMK_KEYBOARD_H
 
 enum layers {
@@ -186,7 +187,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
                        KC_PAST, KC_KP_4, KC_KP_5, KC_KP_6, KC_PPLS, XXXXXXX,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX, XXXXXXX, KC_NLCK, KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, XXXXXXX,
+     XXXXXXX, XXXXXXX, KC_NUM, KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
          KC_PENT, KC_BSPC, KC_KP_0, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
