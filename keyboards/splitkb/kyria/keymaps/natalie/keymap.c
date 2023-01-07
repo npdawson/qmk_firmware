@@ -13,13 +13,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "keycodes.h"
+
 #include QMK_KEYBOARD_H
 
 enum layers {
-    _DVORAK = 0,
-    _COLEMAK,
-    _QWERTY,
+    _QWERTY = 0,
+    _DVORAK,
+    _HD_TI,
     _GAME,
     _NAV,
     _NUM,
@@ -38,14 +38,14 @@ enum layers {
 #define GUI_S       LGUI_T(KC_S)
 
 #define SHFT_T      LSFT_T(KC_T)
-#define CTRL_S      LCTL_T(KC_S)
-#define ALT_R       LALT_T(KC_R)
-//#define GUI_A       LGUI_T(KC_A)
+#define CTRL_N      LCTL_T(KC_N)
+//#define ALT_S       LALT_T(KC_S)
+#define GUI_C       LGUI_T(KC_C)
 
-#define SHFT_N      RSFT_T(KC_N)
+#define SHFT_A      RSFT_T(KC_A)
 //#define CTRL_E      LCTL_T(KC_E)
 #define ALT_I       LALT_T(KC_I)
-#define GUI_O       LGUI_T(KC_O)
+#define GUI_H       LGUI_T(KC_H)
 
 #define SHFT_F      LSFT_T(KC_F)
 #define CTRL_D      LCTL_T(KC_D)
@@ -57,21 +57,41 @@ enum layers {
 #define ALT_L       LALT_T(KC_L)
 #define GUI_SC      LGUI_T(KC_SCLN)
 
-#define KC_STAB     S(KC_TAB)
-
-#define DVORAK      DF(_DVORAK)
-#define COLEMAK     DF(_COLEMAK)
 #define QWERTY      DF(_QWERTY)
+#define DVORAK      DF(_DVORAK)
+#define HD_TI       DF(_HD_TI)  
 
 #define TGLGAME     TG(_GAME)
 
+#define BSP_NAV     LT(_NAV, KC_BSPC)
 #define SPC_NAV     LT(_NAV, KC_SPC)
 #define TAB_NUM     LT(_NUM, KC_TAB)
 
 #define ENT_FUN     LT(_FUN, KC_ENT)
 #define BSP_SYM     LT(_SYM, KC_BSPC)
+#define SPC_SYM     LT(_SYM, KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    [_QWERTY] = LAYOUT_stack(
+//┌────────┬────────┬────────┬────────┬────────┬────────┐
+   XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,
+//├────────┼────────┼────────┼────────┼────────┼────────┤
+   XXXXXXX, GUI_A,   ALT_S,   CTRL_D,  SHFT_F,  KC_G,
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
+   XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX,
+//└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
+                         XXXXXXX, XXXXXXX, KC_ESC,  BSP_NAV, TAB_NUM,
+                      //└────────┴────────┴────────┴────────┴────────┘
+//                  ┌────────┬────────┬────────┬────────┬────────┬────────┐
+                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
+//                  ├────────┼────────┼────────┼────────┼────────┼────────┤
+                     KC_H,    SHFT_J,  CTRL_K,  ALT_L,   GUI_SC,  KC_QUOT,
+//┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+   XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
+//└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
+       ENT_FUN, SPC_SYM, KC_DEL,  XXXXXXX, DVORAK
+//    └────────┴────────┴────────┴────────┴────────┘
+                      ),
     [_DVORAK] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
    XXXXXXX, KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,
@@ -85,58 +105,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                  ┌────────┬────────┬────────┬────────┬────────┬────────┐
                      KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    XXXXXXX,
 //                  ├────────┼────────┼────────┼────────┼────────┼────────┤
-                     KC_D,    SHFT_H,  CTRL_T,  ALT_N,   GUI_S,   XXXXXXX,
+                     KC_D,    SHFT_H,  CTRL_T,  ALT_N,   GUI_S,   KC_MINS, 
 //┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
    XXXXXXX, XXXXXXX, KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    XXXXXXX,
 //└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-       ENT_FUN, BSP_SYM, KC_DEL,  XXXXXXX, COLEMAK
+       ENT_FUN, BSP_SYM, KC_DEL,  XXXXXXX, HD_TI, 
 //    └────────┴────────┴────────┴────────┴────────┘
                       ),
-    [_COLEMAK] = LAYOUT_stack(
+    [_HD_TI] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
-   XXXXXXX, KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,
+   XXXXXXX, KC_J,    KC_G,    KC_M,    KC_P,    KC_V,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
-   XXXXXXX, GUI_A,   ALT_R,   CTRL_S,  SHFT_T,  KC_D,
+   XXXXXXX, GUI_C,   ALT_S,   CTRL_N,  SHFT_T,  KC_W,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX,
+   XXXXXXX, KC_X,    KC_F,    KC_L,    KC_D,    KC_B,    XXXXXXX, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
-                         XXXXXXX, XXXXXXX, KC_ESC,  SPC_NAV, TAB_NUM,
+                         XXXXXXX, XXXXXXX, KC_BSPC, KC_R,    KC_ESC,  
                       //└────────┴────────┴────────┴────────┴────────┘
 //                  ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                     KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT, XXXXXXX,
+                     KC_SCLN, KC_DOT,  KC_SLSH, KC_DQUO, KC_QUOT, KC_Q,   
 //                  ├────────┼────────┼────────┼────────┼────────┼────────┤
-                     KC_H,    SHFT_N,  CTRL_E,  ALT_I,   GUI_O,    XXXXXXX,
+                     KC_COMM, SHFT_A,  CTRL_E,  ALT_I,   GUI_H,   KC_Z,   
 //┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   XXXXXXX, XXXXXXX, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
+   XXXXXXX, XXXXXXX, KC_MINS, KC_U,    KC_O,    KC_Y,    KC_K,    XXXXXXX,
 //└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-       ENT_FUN, BSP_SYM, KC_DEL,  XXXXXXX, QWERTY
+       ENT_FUN, KC_SPC,  KC_DEL,  XXXXXXX, QWERTY
 //    └────────┴────────┴────────┴────────┴────────┘
                   ),
-    [_QWERTY] = LAYOUT_stack(
-//┌────────┬────────┬────────┬────────┬────────┬────────┐
-   XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,
-//├────────┼────────┼────────┼────────┼────────┼────────┤
-   XXXXXXX, GUI_A,   ALT_S,   CTRL_D,  SHFT_F,  KC_G,
-//├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX,
-//└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
-                         XXXXXXX, XXXXXXX, KC_ESC,  SPC_NAV, TAB_NUM,
-                      //└────────┴────────┴────────┴────────┴────────┘
-//                  ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
-//                  ├────────┼────────┼────────┼────────┼────────┼────────┤
-                     KC_H,    SHFT_J,  CTRL_K,  ALT_L,   GUI_SC,  KC_QUOT,
-//┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-//└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-       ENT_FUN, BSP_SYM, KC_DEL,  XXXXXXX, DVORAK
-//    └────────┴────────┴────────┴────────┴────────┘
-                      ),
     [_GAME] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
    KC_ESC,  _______, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
-   KC_TAB,  KC_A,    KC_O,    KC_E,    KC_U,    _______,
+   KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
    _______, _______, _______, _______, _______, _______, _______, _______,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
@@ -145,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                    ┌────────┬────────┬────────┬────────┬────────┬────────┐
                        _______, _______, _______, _______, _______, _______,
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
-                       _______, KC_H,    KC_T,    KC_N,    KC_S,    _______,
+                       _______, KC_J,    KC_K,    KC_L,    KC_SCLN, _______,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______, _______, _______,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
@@ -273,8 +273,8 @@ static void render_status(void) {
         case _DVORAK:
             oled_write_P(PSTR("Dvorak\n"), false);
             break;
-        case _COLEMAK:
-            oled_write_P(PSTR("Colemak\n"), false);
+        case _HD_TI:  
+            oled_write_P(PSTR("HD Ti\n"), false);
             break;
         case _QWERTY:
             oled_write_P(PSTR("QWERTY\n"), false);
