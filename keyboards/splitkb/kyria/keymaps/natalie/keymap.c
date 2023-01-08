@@ -18,7 +18,6 @@
 
 enum layers {
     _QWERTY = 0,
-    _DVORAK,
     _HD_TI,
     _GAME,
     _NAV,
@@ -27,30 +26,20 @@ enum layers {
     _SYM,
 };
 
-#define SHFT_U      LSFT_T(KC_U)
-#define CTRL_E      LCTL_T(KC_E)
-#define ALT_O       LALT_T(KC_O)
-#define GUI_A       LGUI_T(KC_A)
-
-#define SHFT_H      RSFT_T(KC_H)
-#define CTRL_T      LCTL_T(KC_T)
-#define ALT_N       LALT_T(KC_N)
-#define GUI_S       LGUI_T(KC_S)
-
-#define SHFT_T      LSFT_T(KC_T)
-#define CTRL_N      LCTL_T(KC_N)
-//#define ALT_S       LALT_T(KC_S)
 #define GUI_C       LGUI_T(KC_C)
+#define ALT_S       LALT_T(KC_S)
+#define CTRL_N      LCTL_T(KC_N)
+#define SHFT_T      LSFT_T(KC_T)
 
 #define SHFT_A      RSFT_T(KC_A)
-//#define CTRL_E      LCTL_T(KC_E)
+#define CTRL_E      LCTL_T(KC_E)
 #define ALT_I       LALT_T(KC_I)
 #define GUI_H       LGUI_T(KC_H)
 
-#define SHFT_F      LSFT_T(KC_F)
+#define GUI_A       LGUI_T(KC_A)
+//#define ALT_S       LALT_T(KC_S)
 #define CTRL_D      LCTL_T(KC_D)
-#define ALT_S       LALT_T(KC_S)
-//#define GUI_A       LGUI_T(KC_A)
+#define SHFT_F      LSFT_T(KC_F)
 
 #define SHFT_J      RSFT_T(KC_J)
 #define CTRL_K      LCTL_T(KC_K)
@@ -58,7 +47,6 @@ enum layers {
 #define GUI_SC      LGUI_T(KC_SCLN)
 
 #define QWERTY      DF(_QWERTY)
-#define DVORAK      DF(_DVORAK)
 #define HD_TI       DF(_HD_TI)  
 
 #define TGLGAME     TG(_GAME)
@@ -89,27 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
    XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_EQL, 
 //└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-       KC_HENK, SPC_SYM, KC_ENT,  KC_TAB,  DVORAK
-//    └────────┴────────┴────────┴────────┴────────┘
-                      ),
-    [_DVORAK] = LAYOUT_stack(
-//┌────────┬────────┬────────┬────────┬────────┬────────┐
-   _______, KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,
-//├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, GUI_A,   ALT_O,   CTRL_E,  SHFT_U,  KC_I,
-//├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   _______, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    XXXXXXX, XXXXXXX,
-//└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
-                         XXXXXXX, XXXXXXX, KC_ESC,  BSP_NAV, TAB_NUM,
-//                      └────────┴────────┴────────┴────────┴────────┘
-//                  ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                     KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    XXXXXXX,
-//                  ├────────┼────────┼────────┼────────┼────────┼────────┤
-                     KC_D,    SHFT_H,  CTRL_T,  ALT_N,   GUI_S,   KC_MINS, 
-//┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   XXXXXXX, XXXXXXX, KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    _______,
-//└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-       ENT_FUN, SPC_SYM, KC_DEL,  XXXXXXX, HD_TI, 
+       KC_HENK, SPC_SYM, KC_ENT,  KC_TAB,  HD_TI,
 //    └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_HD_TI] = LAYOUT_stack(
@@ -270,9 +238,6 @@ static void render_status(void) {
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state | default_layer_state)) {
-        case _DVORAK:
-            oled_write_P(PSTR("Dvorak\n"), false);
-            break;
         case _HD_TI:  
             oled_write_P(PSTR("HD Ti\n"), false);
             break;
