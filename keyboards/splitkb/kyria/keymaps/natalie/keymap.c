@@ -16,6 +16,8 @@
 
 #include QMK_KEYBOARD_H
 
+#include <keymap_japanese.h>
+
 enum layers {
     _HD_TI = 0,
     _QWERTY,
