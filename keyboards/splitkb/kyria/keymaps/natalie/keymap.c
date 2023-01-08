@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤
    C(KC_V), GUI_C,   ALT_S,   CTRL_N,  SHFT_T,  KC_W,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   KC_AMPR, KC_X,    KC_F,    KC_L,    KC_D,    KC_B,    XXXXXXX, KC_MHEN,
+   KC_AMPR, KC_X,    KC_F,    KC_L,    KC_D,    KC_B,    XXXXXXX, JP_MHEN,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
                          TGLGAME, KC_APP,  BSP_NUM, R_NAV,   KC_TAB,  
 //                      └────────┴────────┴────────┴────────┴────────┘
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                  ├────────┼────────┼────────┼────────┼────────┼────────┤
                      KC_COMM, SHFT_A,  CTRL_E,  ALT_I,   GUI_H,   XXXXXXX,
 //┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   KC_HENK, XXXXXXX, KC_MINS, KC_U,    KC_O,    KC_Y,    KC_K,    KC_EQL,  
+   JP_HENK, XXXXXXX, KC_MINS, KC_U,    KC_O,    KC_Y,    KC_K,    KC_EQL,  
 //└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
        KC_ESC,  SPC_SYM, ENT_FUN, KC_DEL,  QWERTY
 //    └────────┴────────┴────────┴────────┴────────┘
