@@ -5,3 +5,4 @@ LEADER_ENABLE = no         # Enable the Leader Key feature
 MOUSEKEY_ENABLE = no
 TAP_DANCE_ENABLE = no
 COMBO_ENABLE = yes
+CAPS_WORD_ENABLE = yes
