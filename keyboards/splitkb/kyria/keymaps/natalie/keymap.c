@@ -14,6 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <stdint.h>
+#include "process_combo.h"
 #include QMK_KEYBOARD_H
 
 #include <keymap_japanese.h>
@@ -301,3 +303,13 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return true;
 }
 #endif
+
+const uint16_t PROGMEM ky_combo[] = {KC_K, KC_Y, COMBO_END};
+const uint16_t PROGMEM ku_combo[] = {KC_K, KC_U, COMBO_END};
+const uint16_t PROGMEM jg_combo[] = {KC_J, KC_G, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(ky_combo, KC_Q),
+    COMBO(ku_combo, KC_Q), // need to change to process_combo_event to do 'qu'
+    COMBO(jg_combo, KC_Z),
+};

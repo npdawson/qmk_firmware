@@ -50,3 +50,5 @@
 #define TAP_CODE_DELAY 10
 
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+
+#define COMBO_COUNT 3
