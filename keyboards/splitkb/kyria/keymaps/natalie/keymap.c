@@ -305,11 +305,11 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 #endif
 
 const uint16_t PROGMEM ky_combo[] = {KC_K, KC_Y, COMBO_END};
-const uint16_t PROGMEM ku_combo[] = {KC_K, KC_U, COMBO_END};
+const uint16_t PROGMEM yu_combo[] = {KC_Y, KC_U, COMBO_END};
 const uint16_t PROGMEM jg_combo[] = {KC_J, KC_G, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(ky_combo, KC_Q),
-    COMBO(ku_combo, KC_Q), // need to change to process_combo_event to do 'qu'
+    COMBO(yu_combo, KC_Q), // need to change to process_combo_event to do 'qu'
     COMBO(jg_combo, KC_Z),
 };
