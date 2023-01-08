@@ -214,20 +214,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       ),
     [_SYM] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
-   XXXXXXX, KC_TILD, KC_BSLS, KC_PIPE, KC_SLSH, KC_COLN,
+   XXXXXXX, KC_GRV,  KC_LT,   KC_DLR,  KC_GT,   KC_QUOT,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
-   XXXXXXX, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,
+   KC_MINS, KC_BSLS, KC_LPRN, KC_DQUO, KC_HASH, KC_RPRN,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   XXXXXXX, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, XXXXXXX, XXXXXXX,
+   XXXXXXX, KC_AT,   KC_EQL,  KC_ASTR, KC_PLUS, KC_SCLN, XXXXXXX, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
                          XXXXXXX, XXXXXXX, KC_GRV,  KC_SPC,  KC_TILD,
 //                      └────────┴────────┴────────┴────────┴────────┘
 //                    ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                       KC_SCLN, KC_LABK, KC_EQL,  KC_RABK, KC_MINS, XXXXXXX,
+                       KC_QUES, KC_LBRC, KC_UNDS, KC_MINS, KC_RBRC, XXXXXXX,
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
-                       KC_LBRC, KC_LPRN, KC_LCBR, KC_UNDS, KC_PLUS, XXXXXXX,
+                       KC_EXCL, KC_LCBR, KC_COLN, KC_SLSH, KC_RCBR, KC_SCLN,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX, XXXXXXX, KC_RBRC, KC_RPRN, KC_RCBR, KC_TILD, KC_QUES, XXXXXXX,
+     XXXXXXX, XXXXXXX, KC_PERC, KC_AMPR, KC_CIRC, KC_TILD, KC_PIPE, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
