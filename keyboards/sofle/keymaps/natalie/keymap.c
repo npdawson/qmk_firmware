@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 // SOFLE RGB as customized by Natalie
-#include <stdio.h>
 
 #include QMK_KEYBOARD_H
 
@@ -87,8 +86,17 @@
     { R45, R44, R43, R42, R41, R40 } \
 }
 
-#define LGTA LGUI_T(KC_A)
+#define LGTC LGUI_T(KC_C)
 #define LATS LALT_T(KC_S)
+#define LCTN LCTL_T(KC_N)
+#define LSTT LSFT_T(KC_T)
+#define RSTA RSFT_T(KC_A)
+#define RCTE RCTL_T(KC_E)
+#define RATI RALT_T(KC_I)
+#define RGTH RGUI_T(KC_H)
+
+#define LGTA LGUI_T(KC_A)
+//#define LATS LALT_T(KC_S)
 #define LCTD LCTL_T(KC_D)
 #define LSTF LSFT_T(KC_F)
 #define RSTJ RSFT_T(KC_J)
@@ -96,199 +104,78 @@
 #define RATL RALT_T(KC_L)
 #define RGTSCLN RGUI_T(KC_SCLN)
 
-//#define LGTA LGUI_T(KC_A)
-#define LATR LALT_T(KC_R)
-#define LCTS LCTL_T(KC_S)
-#define LSTT LSFT_T(KC_T)
-#define RSTN RSFT_T(KC_N)
-#define RCTE RCTL_T(KC_E)
-#define RATI RALT_T(KC_I)
-#define RGTO RGUI_T(KC_O)
-
 enum sofle_layers {
     _DEFAULTS = 0,
-    _QWERTY = 0,
-    _COLEMAK,
-    _COLEMAKDH,
-    _LOWER,
-    _RAISE,
-    _ADJUST,
-    _NUMPAD,
-    _SWITCH
+    _HD_TI = 0,
+    _QWERTY,
+    _GAME,
+    _NUM,
+    _NAV,
+    _FUN,
+    _SYM
 };
 
 enum custom_keycodes {
-    KC_QWERTY = SAFE_RANGE,
-    KC_COLEMAK,
-    KC_COLEMAKDH,
-    KC_LOWER,
-    KC_RAISE,
+    KC_HD_TI = SAFE_RANGE,
+    KC_QWERTY,
+    KC_GAME,
+    KC_NUM,
     KC_ADJUST,
     KC_D_MUTE
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /*
-     * QWERTY
-     * ,-----------------------------------------.
-     * | ESC  |   1  |   2  |   3  |   4  |   5  |
-     * |------+------+------+------+------+------|
-     * | TAB  |   Q  |   W  |   E  |   R  |   T  |
-     * |------+------+------+------+------+------|-------.
-     * |LShift|   A  |   S  |   D  |   F  |   G  | GAME  |
-     * |------+------+------+------+------+------| MODE  |
-     * | LCTR |   Z  |   X  |   C  |   V  |   B  |-------|
-     * `-----------------------------------------/       /
-     *            | Bspc | WIN  |LOWER | Enter| /Space  /
-     *            |      |      |      |      |/       /
-     *            `-----------------------------------'
-     *
-     *        ,-----------------------------------------.
-     *        |   6  |   7  |   8  |   9  |   0  |  `   |
-     *        |------+------+------+------+------+------|
-     *        |   Y  |   U  |   I  |   O  |   P  | Bspc |
-     *        |------+------+------+------+------+------|
-     *,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
-     *|DISCORD|------+------+------+------+------+------|
-     *|-------|   N  |   M  |   ,  |   .  |   /  |LShift|
-     * \      \-----------------------------------------'
-     *  \Enter \  |SPACE |RAISE | RCTR | RAlt |
-     *   \      \ |      |      |      |      |
-     *   '-----------------------------------'
-     */
+    // Hands Down Titanium
+    [_HD_TI] = LAYOUT_stack(
+    //,-----------------------------------------------------.
+       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,
+    //|--------+--------+--------+--------+--------+--------|
+       C(KC_C), KC_J,    KC_G,    KC_M,    KC_P,    KC_V,
+    //|--------+--------+--------+--------+--------+--------|
+       C(KC_V), LGTC,    LATS,    LCTN,    LSTT,    KC_D,
+    //|--------+--------+--------+--------+--------+--------|  ===  |
+       KC_AMPR, KC_X,    KC_F,    KC_L,    KC_D,    KC_B,    KC_GAME,
+    //|--------+--------+--------+--------+--------+--------|  ===  |
+                         XXXXXXX, KC_APP,  KC_TAB,  KC_BSPC, KC_R,
+    //                  \--------+--------+--------+--------+-------/
+    //
+    //        ,-----------------------------------------------------.
+               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_NUM,
+    //        |--------+--------+--------+--------+--------+--------|
+               KC_SCLN, KC_DOT,  KC_SLSH, KC_DQUO, KC_QUOT, KC_BSLS,
+    //        |--------+--------+--------+--------+--------+--------|
+               KC_COMM, RSTA,    RCTE,    RATI,    RGTH,    KC_EXLM,
+    //|  ===  |--------+--------+--------+--------+--------+--------|
+      KC_QWERTY,KC_MINS, KC_U,   KC_O,    KC_Y,    KC_K,    KC_EQL,
+    //|  ===  |--------+--------+--------+--------+--------+--------|
+       KC_SPC, KC_ENT,  KC_ESC,  KC_DEL,  XXXXXXX
+    //\-------+--------+--------+--------+--------/
+        ),
     [_QWERTY] = LAYOUT_stack(
-    //,-----------------------------------------------------.        
-       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,          
-    //|--------+--------+--------+--------+--------+--------|        
-       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,          
-    //|--------+--------+--------+--------+--------+--------|        
-       KC_ESC,  LGTA,    LATS,    LCTD,    LSTF,    KC_G,          
+    //,-----------------------------------------------------.
+       _______, _______, _______, _______, _______, _______,
+    //|--------+--------+--------+--------+--------+--------|
+       _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,
+    //|--------+--------+--------+--------+--------+--------|
+       _______, LGTA,    LATS,    LCTD,    LSTF,    KC_G,
     //|--------+--------+--------+--------+--------+--------|  ===  |
-       KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MUTE,
+       _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|  ===  |
-                         KC_BSPC, KC_LGUI, KC_LOWER, KC_SPC, KC_ENT,   
-    //                  \--------+--------+--------+--------+--------/
+                         _______, _______, _______, _______, MO(_NAV),
+    //                  \--------+--------+--------+--------+-------/
     //
     //        ,-----------------------------------------------------.
-       LT(_SWITCH,KC_6), KC_7,   KC_8,    KC_9,    KC_0,    KC_GRV,
+               _______, _______, _______, _______, _______, _______,
     //        |--------+--------+--------+--------+--------+--------|
-               KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC,  
+               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
     //        |--------+--------+--------+--------+--------+--------|
-               KC_H,    RSTJ,    RCTK,    RATL,    RGTSCLN, KC_QUOT,  
+               KC_H,    RSTJ,    RCTK,    RATL,    RGTSCLN, KC_QUOT,
     //|  ===  |--------+--------+--------+--------+--------+--------|
-      KC_D_MUTE,KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_LSFT,
+      KC_HD_TI, KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, _______,
     //|  ===  |--------+--------+--------+--------+--------+--------|
-       KC_SPC, KC_ENT ,  KC_RAISE, KC_RCTL, KC_RALT                          
-    //\--------+---------+--------+---------+-------/                
+      _______, _______, _______, _______, _______
+    //\-------+--------+--------+--------+--------/
         ),
-
-    /*
-     * COLEMAK
-     * ,-----------------------------------------.
-     * | ESC  |   1  |   2  |   3  |   4  |   5  |
-     * |------+------+------+------+------+------|
-     * | TAB  |   Q  |   W  |   F  |   P  |   G  |
-     * |------+------+------+------+------+------|-------.
-     * |LShift|   A  |   R  |   S  |   T  |   D  | GAME  |
-     * |------+------+------+------+------+------| MODE  |
-     * | LCTR |   Z  |   X  |   C  |   V  |   B  |-------|
-     * `-----------------------------------------/       /
-     *            | Bspc | WIN  |LOWER | Enter| /Space  /
-     *            |      |      |      |      |/       /
-     *            `-----------------------------------'
-     *
-     *        ,-----------------------------------------.
-     *        |   6  |   7  |   8  |   9  |   0  |  `   |
-     *        |------+------+------+------+------+------|
-     *        |   J  |   L  |   U  |   Y  |   ;  | Bspc |
-     *        |------+------+------+------+------+------|
-     *,-------|   H  |   N  |   E  |   I  |   O  |  '   |
-     *|DISCORD|------+------+------+------+------+------|
-     *|-------|   K  |   M  |   ,  |   .  |   /  |LShift|
-     * \      \-----------------------------------------'
-     *  \Enter \  |SPACE |RAISE | RCTR | RAlt |
-     *   \      \ |      |      |      |      |
-     *   '-----------------------------------'
-     */
-    [_COLEMAK] = LAYOUT_stack(
-    //,-----------------------------------------------------.        
-       KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,          
-    //|--------+--------+--------+--------+--------+--------|        
-       _______, KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,          
-    //|--------+--------+--------+--------+--------+--------|        
-       KC_LSFT, LGTA,    LATR,    LCTS,    LSTT,    KC_D,          
-    //|--------+--------+--------+--------+--------+--------|  ===  |
-       KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MUTE,
-    //|--------+--------+--------+--------+--------+--------|  ===  |
-                         KC_BSPC, KC_LGUI, KC_LOWER, KC_SPC, KC_ENT,   
-    //                  \--------+--------+--------+--------+--------/
-    //
-    //        ,-----------------------------------------------------.
-       LT(_SWITCH,KC_6), KC_7,   KC_8,    KC_9,    KC_0,    KC_GRV,
-    //        |--------+--------+--------+--------+--------+--------|
-               KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,  
-    //        |--------+--------+--------+--------+--------+--------|
-               KC_H,    RSTN,    RCTE,    RATI,    RGTO,    KC_QUOT,  
-    //|  ===  |--------+--------+--------+--------+--------+--------|
-      KC_D_MUTE,KC_K,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_LSFT,
-    //|  ===  |--------+--------+--------+--------+--------+--------|
-       KC_SPC, KC_ENT ,  KC_RAISE, KC_RCTL, KC_RALT                          
-    //\--------+---------+--------+---------+-------/                
-        ),
-
-    /*
-     * COLEMAK-DH
-     * ,-----------------------------------------.
-     * | ESC  |   1  |   2  |   3  |   4  |   5  |
-     * |------+------+------+------+------+------|
-     * | TAB  |   Q  |   W  |   F  |   P  |   B  |
-     * |------+------+------+------+------+------|-------.
-     * |LShift|   A  |   R  |   S  |   T  |   G  | GAME  |
-     * |------+------+------+------+------+------| MODE  |
-     * | LCTR |   Z  |   X  |   C  |   D  |   V  |-------|
-     * `-----------------------------------------/       /
-     *            | Bspc | WIN  |LOWER | Enter| /Space  /
-     *            |      |      |      |      |/       /
-     *            `-----------------------------------'
-     *
-     *        ,-----------------------------------------.
-     *        |   6  |   7  |   8  |   9  |   0  |  `   |
-     *        |------+------+------+------+------+------|
-     *        |   J  |   L  |   U  |   Y  |   ;  | Bspc |
-     *        |------+------+------+------+------+------|
-     *,-------|   M  |   N  |   E  |   I  |   O  |  '   |
-     *|DISCORD|------+------+------+------+------+------|
-     *|-------|   K  |   H  |   ,  |   .  |   /  |LShift|
-     * \      \-----------------------------------------'
-     *  \Enter \  |SPACE |RAISE | RCTR | RAlt |
-     *   \      \ |      |      |      |      |
-     *   '-----------------------------------'
-     */
-    [_COLEMAKDH] = LAYOUT_stack(
-    //,-----------------------------------------------------.        
-       KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,          
-    //|--------+--------+--------+--------+--------+--------|        
-       _______, KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,          
-    //|--------+--------+--------+--------+--------+--------|        
-       KC_LSFT, LGTA,    LATR,    LCTS,    LSTT,    KC_G,          
-    //|--------+--------+--------+--------+--------+--------|  ===  |
-       KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_MUTE,
-    //|--------+--------+--------+--------+--------+--------|  ===  |
-                         KC_BSPC, KC_LGUI, KC_LOWER, KC_SPC, KC_ENT,   
-    //                  \--------+--------+--------+--------+--------/
-    //
-    //        ,-----------------------------------------------------.
-       LT(_SWITCH,KC_6), KC_7,   KC_8,    KC_9,    KC_0,    KC_GRV,
-    //        |--------+--------+--------+--------+--------+--------|
-               KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,  
-    //        |--------+--------+--------+--------+--------+--------|
-               KC_M,    RSTN,    RCTE,    RATI,    RGTO,    KC_QUOT,  
-    //|  ===  |--------+--------+--------+--------+--------+--------|
-      KC_D_MUTE,KC_K,    KC_H,   KC_COMM, KC_DOT,  KC_SLSH, KC_LSFT,
-    //|  ===  |--------+--------+--------+--------+--------+--------|
-       KC_SPC, KC_ENT ,  KC_RAISE, KC_RCTL, KC_RALT                          
-    //\--------+---------+--------+---------+-------/                
-            ),
 
     /* LOWER
      * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -525,24 +412,17 @@ static void render_logo(void) {
 static void print_status_narrow(void) {
     // Print current mode
     oled_write_P(PSTR("\n\n"), false);
-    oled_write_ln_P(PSTR("Dane\nEvans"), false);
-
-    oled_write_ln_P(PSTR(""), false);
+    //oled_write_ln_P(PSTR(""), false);
 
     //snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Undef-%ld", layer_state)
-
 
     switch (get_highest_layer(default_layer_state)) {
         case _QWERTY:
             oled_write_ln_P(PSTR("Qwrt"), false);
             break;
-        case _COLEMAK:
-            oled_write_ln_P(PSTR("Clmk"), false);
+        case _HD_TI:
+            oled_write_ln_P(PSTR("HD Ti"), false);
             break;
-        case _COLEMAKDH:
-            oled_write_ln_P(PSTR("CmkDH"), false);
-            break;
-
         default:
             oled_write_ln_P(PSTR("Undef"), false);
     }
@@ -550,25 +430,24 @@ static void print_status_narrow(void) {
     // Print current layer
     oled_write_ln_P(PSTR("LAYER"), false);
     switch (get_highest_layer(layer_state)) {
-        case _COLEMAK:
+        case _HD_TI:
         case _QWERTY:
-        case _COLEMAKDH:
             oled_write_P(PSTR("Base\n"), false);
             break;
-        case _RAISE:
-            oled_write_P(PSTR("Raise"), false);
+        case _GAME:
+            oled_write_P(PSTR("Game\n"), false);
             break;
-        case _LOWER:
-            oled_write_P(PSTR("Lower"), false);
+        case _NUM:
+            oled_write_P(PSTR("Num\n"), false);
             break;
-        case _ADJUST:
-            oled_write_P(PSTR("Adj\n"), false);
+        case _NAV:
+            oled_write_P(PSTR("Nav\n"), false);
             break;
-        case _NUMPAD:
-            oled_write_P(PSTR("Nump\n"), false);
+        case _FUN:
+            oled_write_P(PSTR("Func\n"), false);
             break;
-        case _SWITCH:
-            oled_write_P(PSTR("Swit\n"), false);
+        case _SYM:
+            oled_write_P(PSTR("Symb\n"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
@@ -600,14 +479,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
-        case KC_COLEMAK:
+        case KC_HD_TI:
             if (record->event.pressed) {
-                set_single_persistent_default_layer(_COLEMAK);
+                set_single_persistent_default_layer(_HD_TI);
             }
             return false;
-        case KC_COLEMAKDH:
+        case KC_GAME:
             if (record->event.pressed) {
-                set_single_persistent_default_layer(_COLEMAKDH);
+                layer_invert(_GAME);
             }
             return false;
         case KC_LOWER:
@@ -658,9 +537,8 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
-            case _COLEMAK:
+            case _HD_TI:
             case _QWERTY:
-            case _COLEMAKDH:
                 if (clockwise) {
                     tap_code(KC_PGDN);
                 } else {
