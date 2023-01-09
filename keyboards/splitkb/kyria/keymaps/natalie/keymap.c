@@ -58,8 +58,8 @@ enum layers {
 #define R_NAV       LT(_NAV, KC_R)
 #define BSP_NUM     LT(_NUM, KC_BSPC)
 
-#define ENT_FUN     LT(_FUN, KC_ENT)
-#define SPC_SYM     LT(_SYM, KC_SPC)
+#define ENT_SYM     LT(_SYM, KC_ENT)
+#define SPC_FUN     LT(_FUN, KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_HD_TI] = LAYOUT_stack(
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
    KC_AMPR, KC_X,    KC_F,    KC_L,    KC_D,    KC_B,    XXXXXXX, JP_MHEN,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
-                         TGLGAME, KC_APP,  BSP_NUM, R_NAV,   KC_TAB,  
+                         TGLGAME, KC_APP,  KC_TAB,  BSP_NUM, R_NAV,
 //                      └────────┴────────┴────────┴────────┴────────┘
 //                  ┌────────┬────────┬────────┬────────┬────────┬────────┐
                      KC_SCLN, KC_DOT,  KC_SLSH, KC_DQUO, KC_QUOT, TG(_NUM),
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
    JP_HENK, XXXXXXX, KC_MINS, KC_U,    KC_O,    KC_Y,    KC_K,    KC_EQL,  
 //└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-       KC_ESC,  SPC_SYM, ENT_FUN, KC_DEL,  QWERTY
+       SPC_FUN, ENT_SYM, KC_ESC,  KC_DEL,  QWERTY
 //    └────────┴────────┴────────┴────────┴────────┘
                   ),
     [_QWERTY] = LAYOUT_stack(
@@ -139,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         KC_BSPC, KC_SPC,  KC_ENT,  _______, XXXXXXX
+         KC_SPC,  KC_ENT,  KC_BSPC, _______, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_NUM] = LAYOUT_stack(
@@ -159,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, XXXXXXX, KC_NUM,  KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         KC_BSPC, KC_KP_0, KC_PENT, XXXXXXX, XXXXXXX
+         KC_BSPC, KC_PENT, KC_KP_0, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_FUN] = LAYOUT_stack(
@@ -179,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
+         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_SYM] = LAYOUT_stack(
