@@ -31,14 +31,16 @@
 
 #define CUSTOM_LAYER_READ //if you remove this it causes issues - needs better guarding
 
-
+#define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_FORCE_HOLD
 #ifdef TAPPING_TERM
     #undef TAPPING_TERM
     #define TAPPING_TERM 200
 #endif
+#define TAP_CODE_DELAY 10
 #define ENCODER_DIRECTION_FLIP
 
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
 #define RGBLIGHT_SLEEP
 //
