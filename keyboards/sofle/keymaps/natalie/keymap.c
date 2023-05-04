@@ -20,13 +20,13 @@
 
 #define INDICATOR_BRIGHTNESS 30
 
-#define HSV_OVERRIDE_HELP(h, s, v, Override) h, s , Override
+#define HSV_OVERRIDE_HELP(h, s, v, Override) h, s, Override
 #define HSV_OVERRIDE(hsv, Override) HSV_OVERRIDE_HELP(hsv,Override)
 
 // Light combinations
 #define SET_INDICATORS(hsv) \
     {0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
-    {35, 1, hsv}
+    {35, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}
 #define SET_UNDERGLOW(hsv) \
     {1, 6, hsv}, \
     {35+1, 6,hsv}
@@ -202,7 +202,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|
        _______, LGTA,    LATS,    LCTD,    LSTF,    KC_G,
     //|--------+--------+--------+--------+--------+--------|  ===  |
-       _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX,
+       _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_GAME,
     //|--------+--------+--------+--------+--------+--------|  ===  |
                          _______, _______, _______, _______, MO(_NAV),
     //                  \--------+--------+--------+--------+-------/
@@ -223,23 +223,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //,-----------------------------------------------------.
        _______, _______, _______, _______, _______, _______,
     //|--------+--------+--------+--------+--------+--------|
-       KC_TAB,  _______, _______, _______, _______, _______,
+       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,
     //|--------+--------+--------+--------+--------+--------|
-       KC_ESC,  KC_C,    KC_S,    KC_N,    KC_T,    KC_W,
+       KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,
     //|--------+--------+--------+--------+--------+--------|  ===  |
-       _______, _______, _______, _______, _______, _______, KC_GAME,
+       _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_GAME,
     //|--------+--------+--------+--------+--------+--------|  ===  |
-                         _______, _______, KC_LCTL, KC_LSFT, KC_R,
+                         _______, _______, KC_LCTL, KC_LSFT, KC_SPC,
     //                  \--------+--------+--------+--------+-------/
     //
     //        ,-----------------------------------------------------.
-               _______, _______, _______, _______, _______, _______,
+               _______, _______, _______, _______, _______, XXXXXXX,
     //        |--------+--------+--------+--------+--------+--------|
-               _______, _______, _______, _______, _______, _______,
+               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
     //        |--------+--------+--------+--------+--------+--------|
-               KC_COMM, KC_A,    KC_E,    KC_I,    KC_H,    _______,
+               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     //|  ===  |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, _______, _______, _______, _______, _______, _______,
+      XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
     //|  ===  |--------+--------+--------+--------+--------+--------|
       _______, _______, _______, _______, _______
     //\-------+--------+--------+--------+--------/
@@ -350,73 +350,81 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 char layer_state_str[70];
 // Now define the array of layers. Later layers take precedence
 
-// QWERTY,
 // Light on inner column and underglow
-    const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-            SET_LAYER_ID(HSV_RED)
+const rgblight_segment_t PROGMEM layer_hd_ti_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+        SET_LAYER_ID(HSV_PURPLE)
+        );
+const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+        SET_LAYER_ID(HSV_RED)
+        );
 
-            );
-    const rgblight_segment_t PROGMEM layer_hd_ti_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-            SET_LAYER_ID(HSV_PINK)
-            );
+// _NUM,
+// Light on outer column and underglow
+const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+        SET_LAYER_ID(HSV_TEAL)
 
-    // _NUM,
-    // Light on outer column and underglow
-    const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-            SET_LAYER_ID(HSV_TEAL)
+        );
+// _SYM,
+// Light on inner column and underglow
+const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+        SET_LAYER_ID(HSV_BLUE)
 
-            );
-    // _SYM,
-    // Light on inner column and underglow
-    const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-            SET_LAYER_ID(HSV_BLUE)
+        );
+// _NAV,
+// Light on inner column and underglow
+const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+        SET_LAYER_ID(HSV_PINK)
+        );
 
-            );
-    // _NAV,
-    // Light on inner column and underglow
-    const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-            SET_LAYER_ID(HSV_PURPLE)
-            );
+//_FUN
+const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+        SET_INDICATORS(HSV_ORANGE),
+        SET_UNDERGLOW(HSV_ORANGE),
+        SET_NUMPAD(HSV_BLUE),
+        {7, 4, HSV_ORANGE},
+        {25, 2, HSV_ORANGE},
+        {35+6, 4, HSV_ORANGE},
+        {35+25, 2, HSV_ORANGE}
+        );
+// _GAME
+// light up top row
+const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+        SET_LAYER_ID(HSV_GREEN),
+        SET_NUMROW(HSV_GREEN)
+        );
 
-    //_FUN
-    const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-            SET_INDICATORS(HSV_ORANGE),
-            SET_UNDERGLOW(HSV_ORANGE),
-            SET_NUMPAD(HSV_BLUE),
-            {7, 4, HSV_ORANGE},
-            {25, 2, HSV_ORANGE},
-            {35+6, 4, HSV_ORANGE},
-            {35+25, 2, HSV_ORANGE}
-            );
-    // _GAME
-    // light up top row
-    const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-            SET_LAYER_ID(HSV_GREEN),
-            SET_NUMROW(HSV_GREEN)
-            );
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+        layer_hd_ti_lights,
+        layer_num_lights,// overrides layer 1
+        layer_symbol_lights,
+        layer_command_lights,
+        layer_numpad_lights,
+        layer_switcher_lights, // Overrides other layers
+        layer_qwerty_lights
+        );
 
-    const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+layer_state_t layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS)
+            && layer_state_cmp(default_layer_state,_HD_TI));
+    rgblight_set_layer_state(6, layer_state_cmp(state, _DEFAULTS)
+            && layer_state_cmp(default_layer_state,_QWERTY));
 
-            layer_hd_ti_lights,
-            layer_qwerty_lights,
-            layer_num_lights,// overrides layer 1
-            layer_symbol_lights,
-            layer_command_lights,
-            layer_numpad_lights,
-            layer_switcher_lights  // Overrides other layers
-            );
+    rgblight_set_layer_state(1, layer_state_cmp(state, _NUM));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _NAV));
+    rgblight_set_layer_state(3, layer_state_cmp(state, _GAME));
+    rgblight_set_layer_state(4, layer_state_cmp(state, _SYM));
+    rgblight_set_layer_state(5, layer_state_cmp(state, _FUN));
+    return state;
+}
 
-    layer_state_t layer_state_set_user(layer_state_t state) {
-        rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_HD_TI));
-        rgblight_set_layer_state(1, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS)
+            && layer_state_cmp(default_layer_state,_HD_TI));
+    rgblight_set_layer_state(6, layer_state_cmp(state, _DEFAULTS)
+            && layer_state_cmp(default_layer_state,_QWERTY));
+    return state;
+}
 
-        rgblight_set_layer_state(2, layer_state_cmp(state, _GAME));
-        rgblight_set_layer_state(3, layer_state_cmp(state, _NUM));
-        rgblight_set_layer_state(4, layer_state_cmp(state, _NAV));
-        rgblight_set_layer_state(5, layer_state_cmp(state, _SYM));
-        rgblight_set_layer_state(6, layer_state_cmp(state, _FUN));
-        return state;
-    }
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
@@ -441,13 +449,12 @@ static void render_logo(void) {
 static void print_status_narrow(void) {
     // Print current mode
     oled_write_P(PSTR("\n\n"), false);
-    //oled_write_ln_P(PSTR(""), false);
 
     //snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Undef-%ld", layer_state)
 
     switch (get_highest_layer(default_layer_state)) {
         case _QWERTY:
-            oled_write_ln_P(PSTR("Qwrt"), false);
+            oled_write_ln_P(PSTR("QWERT"), false);
             break;
         case _HD_TI:
             oled_write_ln_P(PSTR("HD Ti"), false);
@@ -461,22 +468,22 @@ static void print_status_narrow(void) {
     switch (get_highest_layer(layer_state)) {
         case _HD_TI:
         case _QWERTY:
-            oled_write_P(PSTR("Base\n"), false);
+            oled_write_ln_P(PSTR("Base"), false);
             break;
         case _GAME:
-            oled_write_P(PSTR("Game\n"), false);
+            oled_write_ln_P(PSTR("Game"), false);
             break;
         case _NUM:
-            oled_write_P(PSTR("Num\n"), false);
+            oled_write_ln_P(PSTR("Num"), false);
             break;
         case _NAV:
-            oled_write_P(PSTR("Nav\n"), false);
+            oled_write_ln_P(PSTR("Nav"), false);
             break;
         case _FUN:
-            oled_write_P(PSTR("Func\n"), false);
+            oled_write_ln_P(PSTR("Func"), false);
             break;
         case _SYM:
-            oled_write_P(PSTR("Symb\n"), false);
+            oled_write_ln_P(PSTR("Symb"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
