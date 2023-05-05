@@ -18,6 +18,8 @@
 
 #include QMK_KEYBOARD_H
 
+#include "features/custom_shift_keys.h"
+
 #define INDICATOR_BRIGHTNESS 30
 
 #define HSV_OVERRIDE_HELP(h, s, v, Override) h, s, Override
@@ -111,7 +113,7 @@
 
 enum sofle_layers {
     _DEFAULTS = 0,
-    _HD_TI = 0,
+    _HD_VB = 0,
     _QWERTY,
     _GAME,
     _NUM,
@@ -121,43 +123,54 @@ enum sofle_layers {
 };
 
 enum custom_keycodes {
-    KC_HD_TI = SAFE_RANGE,
+    KC_HD_VB = SAFE_RANGE,
     KC_QWERTY,
     KC_GAME,
     KC_NUMP,
 };
 
+const custom_shift_key_t custom_shift_keys[] = {
+    {KC_DOT , KC_COLN},
+    {KC_HASH, KC_UNDS},
+    {KC_COMM, KC_SCLN},
+    {KC_MINS, KC_PLUS},
+    {KC_EQL , KC_ASTR},
+};
+
+uint8_t NUM_CUSTOM_SHIFT_KEYS =
+    sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
+
 enum combo_events {
-    CB_JG,
-    CB_KY,
-    CB_YU,
+    CB_WX,
+    CB_XM,
+    CB_XG,
     COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM jg_combo[] = {KC_J, KC_G, COMBO_END};
-const uint16_t PROGMEM ky_combo[] = {KC_K, KC_Y, COMBO_END};
-const uint16_t PROGMEM yu_combo[] = {KC_Y, KC_U, COMBO_END};
+const uint16_t PROGMEM wx_combo[] = {KC_W, KC_X, COMBO_END};
+const uint16_t PROGMEM xm_combo[] = {KC_X, KC_M, COMBO_END};
+const uint16_t PROGMEM xg_combo[] = {KC_X, KC_G, COMBO_END};
 
 combo_t key_combos[] = {
-    [CB_JG] = COMBO_ACTION(jg_combo),
-    [CB_KY] = COMBO_ACTION(ky_combo),
-    [CB_YU] = COMBO_ACTION(yu_combo),
+    [CB_WX] = COMBO_ACTION(wx_combo),
+    [CB_XM] = COMBO_ACTION(xm_combo),
+    [CB_XG] = COMBO_ACTION(xg_combo),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
     switch (combo_index) {
-        case CB_JG:
+        case CB_WX:
             if (pressed) {
                 tap_code16(KC_Z);
             }
             break;
-        case CB_KY:
+        case CB_XM:
             if (pressed) {
                 tap_code16(KC_Q);
             }
             break;
-        case CB_YU:
+        case CB_XG:
             if (pressed) {
                 tap_code16(KC_Q);
                 unregister_mods(MOD_MASK_SHIFT);
@@ -168,16 +181,16 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    // Hands Down Titanium
-    [_HD_TI] = LAYOUT_stack(
+    // Hands Down Vibranium
+    [_HD_VB] = LAYOUT_stack(
     //,-----------------------------------------------------.
        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,
     //|--------+--------+--------+--------+--------+--------|
-       C(KC_C), KC_J,    KC_G,    KC_M,    KC_P,    KC_V,
+       C(KC_C), KC_W,    KC_X,    KC_M,    KC_G,    KC_J,
     //|--------+--------+--------+--------+--------+--------|
-       C(KC_V), LGTC,    LATS,    LCTN,    LSTT,    KC_W,
+       C(KC_V), LGTC,    LATS,    LCTN,    LSTT,    KC_K,
     //|--------+--------+--------+--------+--------+--------|  ===  |
-       KC_AMPR, KC_X,    KC_F,    KC_L,    KC_D,    KC_B,    KC_GAME,
+       KC_AMPR, KC_P,    KC_F,    KC_L,    KC_D,    KC_V,    KC_GAME,
     //|--------+--------+--------+--------+--------+--------|  ===  |
                          XXXXXXX, KC_APP,  KC_TAB,  BSP_NUM, R_NAV,
     //                  \--------+--------+--------+--------+-------/
@@ -185,11 +198,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //        ,-----------------------------------------------------.
                KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_NUMP,
     //        |--------+--------+--------+--------+--------+--------|
-               KC_SCLN, KC_DOT,  KC_SLSH, KC_DQUO, KC_QUOT, KC_BSLS,
+               KC_HASH, KC_DOT,  KC_EQL,  KC_SLSH, KC_QUOT, KC_BSLS,
     //        |--------+--------+--------+--------+--------+--------|
                KC_COMM, RSTA,    RCTE,    RATI,    RGTH,    KC_EXLM,
     //|  ===  |--------+--------+--------+--------+--------+--------|
-      KC_QWERTY,KC_MINS, KC_U,   KC_O,    KC_Y,    KC_K,    KC_EQL,
+      KC_QWERTY,KC_MINS, KC_U,   KC_O,    KC_Y,    KC_B,    KC_AT,
     //|  ===  |--------+--------+--------+--------+--------+--------|
        SPC_SYM,ENT_FUN, KC_ESC,  KC_DEL,  XXXXXXX
     //\-------+--------+--------+--------+--------/
@@ -214,7 +227,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //        |--------+--------+--------+--------+--------+--------|
                KC_H,    RSTJ,    RCTK,    RATL,    RGTSCLN, KC_QUOT,
     //|  ===  |--------+--------+--------+--------+--------+--------|
-      KC_HD_TI, KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, _______,
+      KC_HD_VB, KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, _______,
     //|  ===  |--------+--------+--------+--------+--------+--------|
       _______, _______, _______, _______, _______
     //\-------+--------+--------+--------+--------/
@@ -405,7 +418,7 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS)
-            && layer_state_cmp(default_layer_state,_HD_TI));
+            && layer_state_cmp(default_layer_state,_HD_VB));
     rgblight_set_layer_state(6, layer_state_cmp(state, _DEFAULTS)
             && layer_state_cmp(default_layer_state,_QWERTY));
 
@@ -419,7 +432,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS)
-            && layer_state_cmp(default_layer_state,_HD_TI));
+            && layer_state_cmp(default_layer_state,_HD_VB));
     rgblight_set_layer_state(6, layer_state_cmp(state, _DEFAULTS)
             && layer_state_cmp(default_layer_state,_QWERTY));
     return state;
@@ -456,8 +469,8 @@ static void print_status_narrow(void) {
         case _QWERTY:
             oled_write_ln_P(PSTR("QWERT"), false);
             break;
-        case _HD_TI:
-            oled_write_ln_P(PSTR("HD Ti"), false);
+        case _HD_VB:
+            oled_write_ln_P(PSTR("HD Vb"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
@@ -466,7 +479,7 @@ static void print_status_narrow(void) {
     // Print current layer
     oled_write_ln_P(PSTR("LAYER"), false);
     switch (get_highest_layer(layer_state)) {
-        case _HD_TI:
+        case _HD_VB:
         case _QWERTY:
             oled_write_ln_P(PSTR("Base"), false);
             break;
@@ -509,15 +522,16 @@ bool oled_task_user(void) {
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_custom_shift_keys(keycode, record)) {return false;}
     switch (keycode) {
         case KC_QWERTY:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
-        case KC_HD_TI:
+        case KC_HD_VB:
             if (record->event.pressed) {
-                set_single_persistent_default_layer(_HD_TI);
+                set_single_persistent_default_layer(_HD_VB);
             }
             return false;
         case KC_GAME:
@@ -545,7 +559,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
-            case _HD_TI:
+            case _HD_VB:
             case _QWERTY:
                 if (clockwise) {
                     tap_code(KC_PGDN);

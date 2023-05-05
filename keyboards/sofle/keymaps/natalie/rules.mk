@@ -1,3 +1,4 @@
+SRC += features/custom_shift_keys.c
 MOUSEKEY_ENABLE = yes
 EXTRAKEY_ENABLE = yes
 CONSOLE_ENABLE = no
