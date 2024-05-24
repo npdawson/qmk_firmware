@@ -15,14 +15,15 @@
  */
 
 #include <stdint.h>
-#include "process_combo.h"
+//#include "process_combo.h"
+//#include "features/custom_shift_keys.h"
 #include QMK_KEYBOARD_H
 
-#include <keymap_japanese.h>
+//#include <keymap_japanese.h>
 
 enum layers {
-    _HD_TI = 0,
-    _QWERTY,
+    _QWERTY = 0,
+    //_HD_VB,
     _GAME,
     _NAV,
     _NUM,
@@ -30,18 +31,8 @@ enum layers {
     _SYM,
 };
 
-#define GUI_C       LGUI_T(KC_C)
-#define ALT_S       LALT_T(KC_S)
-#define CTRL_N      LCTL_T(KC_N)
-#define SHFT_T      LSFT_T(KC_T)
-
-#define SHFT_A      RSFT_T(KC_A)
-#define CTRL_E      LCTL_T(KC_E)
-#define ALT_I       LALT_T(KC_I)
-#define GUI_H       LGUI_T(KC_H)
-
 #define GUI_A       LGUI_T(KC_A)
-//#define ALT_S       LALT_T(KC_S)
+#define ALT_S       LALT_T(KC_S)
 #define CTRL_D      LCTL_T(KC_D)
 #define SHFT_F      LSFT_T(KC_F)
 
@@ -50,63 +41,45 @@ enum layers {
 #define ALT_L       LALT_T(KC_L)
 #define GUI_SC      LGUI_T(KC_SCLN)
 
-#define QWERTY      DF(_QWERTY)
-#define HD_TI       DF(_HD_TI)  
+//#define QWERTY      DF(_QWERTY)
+//#define HD_VB       DF(_HD_TI)
 
 #define TGLGAME     TG(_GAME)
 
-#define R_NAV       LT(_NAV, KC_R)
-#define BSP_NUM     LT(_NUM, KC_BSPC)
+//#define R_NAV       LT(_NAV, KC_R)
+#define G_NUM       LT(_NUM, KC_G)
 
-#define ENT_SYM     LT(_SYM, KC_ENT)
-#define SPC_FUN     LT(_FUN, KC_SPC)
+#define BSP_SYM     LT(_SYM, KC_BSPC)
+#define SPC_NAV     LT(_NAV, KC_SPC)
+#define ENT_FUN     LT(_FUN, KC_ENT)
+#define SPC_SYM     LT(_SYM, KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_HD_TI] = LAYOUT_stack(
-//┌────────┬────────┬────────┬────────┬────────┬────────┐
-   C(KC_C), KC_J,    KC_G,    KC_M,    KC_P,    KC_V,
-//├────────┼────────┼────────┼────────┼────────┼────────┤
-   C(KC_V), GUI_C,   ALT_S,   CTRL_N,  SHFT_T,  KC_W,
-//├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   KC_AMPR, KC_X,    KC_F,    KC_L,    KC_D,    KC_B,    XXXXXXX, JP_MHEN,
-//└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
-                         TGLGAME, KC_APP,  KC_TAB,  BSP_NUM, R_NAV,
-//                      └────────┴────────┴────────┴────────┴────────┘
-//                  ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                     KC_SCLN, KC_DOT,  KC_SLSH, KC_DQUO, KC_QUOT, TG(_NUM),
-//                  ├────────┼────────┼────────┼────────┼────────┼────────┤
-                     KC_COMM, SHFT_A,  CTRL_E,  ALT_I,   GUI_H,   XXXXXXX,
-//┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   JP_HENK, XXXXXXX, KC_MINS, KC_U,    KC_O,    KC_Y,    KC_K,    KC_EQL,  
-//└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-       SPC_FUN, ENT_SYM, KC_ESC,  KC_DEL,  QWERTY
-//    └────────┴────────┴────────┴────────┴────────┘
-                  ),
     [_QWERTY] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
-   _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,
+   KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, GUI_A,   ALT_S,   CTRL_D,  SHFT_F,  KC_G,
+   KC_ESC,  GUI_A,   ALT_S,   CTRL_D,  SHFT_F,  G_NUM,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    _______, _______,
+   KC_LPRN, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_DEL,  KC_LBRC,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
-                         XXXXXXX, _______, _______, _______, MO(_NAV),
+                         TGLGAME, KC_MINS, BSP_SYM, SPC_NAV, KC_TAB,
 //                      └────────┴────────┴────────┴────────┴────────┘
 //                  ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
+                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
 //                  ├────────┼────────┼────────┼────────┼────────┼────────┤
                      KC_H,    SHFT_J,  CTRL_K,  ALT_L,   GUI_SC,  KC_QUOT,
 //┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______, 
+   KC_RBRC, KC_CAPS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RPRN,
 //└───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-       _______, _______, _______, _______, HD_TI
+       KC_ESC,  SPC_SYM, ENT_FUN, KC_EQL,  XXXXXXX
 //    └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_GAME] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
-   KC_ESC,  _______, _______, _______, _______, _______,
+   KC_TAB,  _______, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
-   KC_TAB,  KC_C,    KC_S,    KC_N,    KC_T,    _______,
+   _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
    _______, _______, _______, _______, _______, _______, _______, _______,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
@@ -115,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                    ┌────────┬────────┬────────┬────────┬────────┬────────┐
                        _______, _______, _______, _______, _______, _______,
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
-                       _______, KC_A,    KC_E,    KC_I,    KC_H,    _______,
+                       _______, KC_J,    KC_K,    KC_L,    KC_SCLN, _______,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______, _______, _______,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
@@ -130,30 +103,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
-                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+                         XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX,
                       //└────────┴────────┴────────┴────────┴────────┘
 //                    ┌────────┬────────┬────────┬────────┬────────┬────────┐
                        KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, KC_INS,
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
-                       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, KC_CAPS,
+                       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, KC_DEL,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         KC_SPC,  KC_ENT,  KC_BSPC, _______, XXXXXXX
+         KC_ESC,  KC_SPC,  KC_ENT,  XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_NUM] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
-   XXXXXXX, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,
+   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   XXXXXXX, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX, XXXXXXX,
+   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
-                         XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX,
+                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //                      └────────┴────────┴────────┴────────┴────────┘
 //                    ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                       KC_PSLS, KC_KP_7, KC_KP_8, KC_KP_9, KC_PMNS, TG(_NUM),
+                       KC_PSLS, KC_KP_7, KC_KP_8, KC_KP_9, KC_PMNS, XXXXXXX,
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
                        KC_PAST, KC_KP_4, KC_KP_5, KC_KP_6, KC_PPLS, XXXXXXX,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -179,25 +152,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
-         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+         XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
                       ),
     [_SYM] = LAYOUT_stack(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐
-   XXXXXXX, KC_GRV,  KC_LT,   KC_DLR,  KC_GT,   KC_QUOT,
+   KC_GRV,  XXXXXXX, KC_LT,   KC_TILD, KC_GT,   KC_QUOT,
 //├────────┼────────┼────────┼────────┼────────┼────────┤
-   KC_MINS, KC_BSLS, KC_LPRN, KC_DQUO, KC_HASH, KC_RPRN,
+   KC_MINS, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_EQL,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┬────────┐
-   XXXXXXX, KC_AT,   KC_EQL,  KC_ASTR, KC_PLUS, KC_SCLN, XXXXXXX, XXXXXXX,
+   XXXXXXX, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_SCLN, XXXXXXX, XXXXXXX,
 //└────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┘
                          XXXXXXX, XXXXXXX, XXXXXXX, KC_SPC,  XXXXXXX,
 //                      └────────┴────────┴────────┴────────┴────────┘
 //                    ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                       KC_QUES, KC_LBRC, KC_UNDS, KC_MINS, KC_RBRC, XXXXXXX,
+                       KC_QUES, KC_UNDS, KC_PIPE, KC_BSLS, KC_DQUO, XXXXXXX,
 //                    ├────────┼────────┼────────┼────────┼────────┼────────┤
-                       KC_EXLM, KC_LCBR, KC_COLN, KC_SLSH, KC_RCBR, KC_SCLN,
+                       KC_MINS, KC_LCBR, KC_LPRN, KC_RPRN, KC_RCBR, KC_SCLN,
 //  ┌────────┬────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX, XXXXXXX, KC_PERC, KC_AMPR, KC_CIRC, KC_TILD, KC_PIPE, XXXXXXX,
+     XXXXXXX, XXXXXXX, KC_PLUS, KC_LBRC, KC_LABK, KC_RABK, KC_RBRC, XXXXXXX,
 //  └───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┘
          XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX
 //      └────────┴────────┴────────┴────────┴────────┘
@@ -240,9 +213,6 @@ static void render_status(void) {
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state | default_layer_state)) {
-        case _HD_TI:  
-            oled_write_P(PSTR("HD Ti\n"), false);
-            break;
         case _QWERTY:
             oled_write_P(PSTR("QWERTY\n"), false);
             break;
@@ -304,12 +274,12 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 }
 #endif
 
-const uint16_t PROGMEM ky_combo[] = {KC_K, KC_Y, COMBO_END};
-const uint16_t PROGMEM yu_combo[] = {KC_Y, KC_U, COMBO_END};
-const uint16_t PROGMEM jg_combo[] = {KC_J, KC_G, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(ky_combo, KC_Q),
-    COMBO(yu_combo, KC_Q), // need to change to process_combo_event to do 'qu'
-    COMBO(jg_combo, KC_Z),
-};
+//const uint16_t PROGMEM ky_combo[] = {KC_K, KC_Y, COMBO_END};
+//const uint16_t PROGMEM yu_combo[] = {KC_Y, KC_U, COMBO_END};
+//const uint16_t PROGMEM jg_combo[] = {KC_J, KC_G, COMBO_END};
+//
+//combo_t key_combos[COMBO_COUNT] = {
+//    COMBO(ky_combo, KC_Q),
+//    COMBO(yu_combo, KC_Q), // need to change to process_combo_event to do 'qu'
+//    COMBO(jg_combo, KC_Z),
+//};
